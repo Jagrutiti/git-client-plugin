@@ -241,6 +241,7 @@
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.jenkins-ci.plugins.workflow/workflow-cps -->
+    <!-- To write the test case in a plugin -->
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-cps</artifactId>

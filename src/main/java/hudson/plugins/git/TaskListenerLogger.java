@@ -7,16 +7,25 @@ import hudson.model.TaskListener;
  */
 public class TaskListenerLogger {
     /**
-     * Prints the log if printDetailedLogs is true.
+     *  ENABLED_LOGGER_LEVEL can have values like: INFO, WARNING, ERROR, FATAL
+     */
+    String ENABLED_LOGGER_LEVEL = "ERROR";
+
+    /**
+     * Prints the log if printDetailedLogs if logger level matches the one in the logs.
      *
      * @param listener the task listener that will print log.
-     * @param printDetailedLogs is a boolean value. If it is true the log is printed.
-     * @param msg the message
-     *           to be printed in the log.
+     * @param msg the message to be printed in the log.
      */
-    public void printLogs(TaskListener listener, boolean printDetailedLogs, String msg) {
-        if (printDetailedLogs) {
+    public void printLogs(TaskListener listener, String msg) {
+        if (getPrefix(msg).equals(ENABLED_LOGGER_LEVEL)) {
             listener.getLogger().print(msg);
         }
+    }
+
+    private String getPrefix(String msg) {
+        String[] parts = msg.split(":");
+        String prefix = parts[0].trim();
+        return prefix;
     }
 }
